@@ -17,16 +17,16 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label for="actual"></label>
-                    <select name="" id="" class="form-control">
-                        <option v-for="money in formatMoney">
+                    <select v-model="from" class="form-control">
+                        <option :value="money.id" v-for="money in formatMoney">
                             {{ money.currencyName }}
                         </option>
                     </select>
                 </div>
                 <div class="col-sm-6">
                     <label for="final"></label>
-                    <select name="" id="" class="form-control">
-                        <option v-for="money in formatMoney">
+                    <select  v-model="to"class="form-control">
+                        <option :value="money.id" v-for="money in formatMoney">
                             {{ money.currencyName }}
                         </option>
                     </select>
@@ -34,19 +34,22 @@
             </div>
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                    <input type="text" 
+                    <input v-model="amount"
+                    type="text" 
                     class="form-control my-5"
                     placeholder="Ingrese una cantidad">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <button class="btn btn-primary">Convertir</button>
+                <div class="col-md-12  text-center">
+                    <button :disabled="disabled"
+                    @click="convertMoney()" 
+                    class="btn btn-primary">Convertir</button>
                 </div> 
             </div>
             <div class="row mt-5">
                 <div class="col-sm-12 text-center">
-                    <h2>40.00</h2>
+                    <h2>{{ calculateResult }}</h2>
                 </div>
             </div> 
         </div>
